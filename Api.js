@@ -19,6 +19,7 @@ export class Api{
     //2. Atiende las peticiones y responde
     procesarPeticion(){
         this.app.use("/",rutasAPI)
+        this.app.use(express.json())
     }
 
     // se conecta a la Base de datos
