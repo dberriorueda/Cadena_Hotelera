@@ -1,0 +1,16 @@
+{
+  "name": "cadenahotelera",
+  "version": "1.0.0",
+  "description": "api rest para cadena de hoteles",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Diego Alfonso Berrio Rueda",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
