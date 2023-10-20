@@ -3,19 +3,13 @@ export class controladorHabitacion{
 
     buscartodas(request, response){
         try{
-            //1. hay que recibir datos
-            //2. Intentare conectarme a BD
-            //3. Envio la respuesta
             response.status(200).json({
-                "estado":true,
                 "mensaje":"Exito buscando la habitacione",
                 "datos":"Aca van los datos de consultados de la BD"
             })
         }catch(error){
             response.status(400).json({
-                "estado":false,
-                "mensaje":"Fallamos buscando la habitacione",
-                "datos":null 
+                "mensaje":"Fallamos buscando la habitacion",
             })
         }
     }
@@ -26,52 +20,45 @@ export class controladorHabitacion{
             //2. Con el id que mando el cliente busco la habitacion en BD
             //3. Respondo al cliente
              response.status(200).json({
-                "estado":true,
                 "mensaje":"Exito buscando la habitacion",
                 "datos":"Aca van los datos de consultados de la BD"
              })    
 
         }catch(error){
             response.status(400).json({
-                "estado":false,
-                "mensaje":"Fallamos buscando la habitacion"+error,
-                "datos":null 
+                "mensaje":"Fallamos buscando la habitacion"+error
             })
         }
     }
     modificar(request,response){
         try{
             //1. Hay que recibir datos(si)
-            let idHabitacion=request.params.id
-            let datosModificar=request.params.body
+            let id=request.params.id
+            let datos=request.body
             //2. modificar en BD
             //3. enviar respuesta
             response.status(400).json({
-                "estado":false,
-                "mensaje":"Exito modificando la habitacion"+error,
-                "datos":null 
+                "mensaje":"Exito modificando la habitacion",
+                "datos":"Aca los datos"
             })
 
         }catch(error){
              response.status(400).json({
-                "estado":false,
-                "mensaje":"Fallamos buscando la habitacion",
-                "datos":null 
+                "mensaje":"Fallamos buscando la habitacion"+ error
             })
         }
     }
     registrar(request,response){
         try{
             //1. hay que recibir datos(si)
-            let datosRegistrar=request.body
-            //2. guardelos en BD
-            //3. responda
-
+            let datos=request.body
+            response.status(200).json({
+                "mensaje":"Exito buscando los datos",
+                "datos":"aca los datos"
+            })
         }catch(error){
              response.status(400).json({
-                "estado":false,
-                "mensaje":"Fallamos registrando la habitacion",
-                "datos":null 
+                "mensaje":"Fallamos registrando la habitacion"+error
             })
         }
     }
@@ -82,16 +69,12 @@ export class controladorHabitacion{
             //2. eliminelo de la BD
             //3.responda
             response.status(400).json({
-                "estado":false,
-                "mensaje":"Exito borrando la habitacion"+error,
-                "datos":null 
+                "mensaje":"Exito borrando la habitacion",
+                "datos":"aca los datos"
             })
-
         }catch(error){
              response.status(400).json({
-                "estado":false,
-                "mensaje":"Fallamos borrando la habitacion"+error,
-                "datos":null 
+                "mensaje":"Fallamos borrando la habitacion"+error
             })
         }
     }

@@ -2,6 +2,8 @@
 import express from "express";
 import { rutasAPI } from "./router/rutasHoteleras.js";
 
+const puerto = 3001;
+
 export class Api{
     constructor(){
         this.app = express()
@@ -10,7 +12,7 @@ export class Api{
 
     //1. Levantar peticion
     levantarServidor() {
-        this.app.listen(3000, function() {
+        this.app.listen(puerto, function() {
             console.log("servidor operando")
             
         })
