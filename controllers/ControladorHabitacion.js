@@ -1,11 +1,14 @@
-export class controladorHabitacion{
+import { ServicioHabitacion } from "../services/ServicioHabitacion.js"
+export class ControladorHabitacion{
     constructor(){}
 
-    buscartodas(request, response){
+    async buscartodas(request, response){
         try{
+            let servicioHabitacion = new ServicioHabitacion()
             response.status(200).json({
-                "mensaje":"Exito buscando la habitacione",
-                "datos":"Aca van los datos de consultados de la BD"
+                "estado":true,
+                "mensaje":"Exito buscando la habitaciones",
+                "datos": await servicioHabitacion.buscarTodas()
             })
         }catch(error){
             response.status(400).json({
@@ -13,15 +16,16 @@ export class controladorHabitacion{
             })
         }
     }
-    buscarporId(request,response){
+    async buscarporId(request,response){
         try{
+            let servicioHabitacion = new ServicioHabitacion()
             //1. hay que recibir datos(si)
             let id=request.params.id
             //2. Con el id que mando el cliente busco la habitacion en BD
             //3. Respondo al cliente
              response.status(200).json({
                 "mensaje":"Exito buscando la habitacion",
-                "datos":"Aca van los datos de consultados de la BD"
+                "datos": await servicioHabitacion.buscarPorId(id)
              })    
 
         }catch(error){
@@ -30,11 +34,13 @@ export class controladorHabitacion{
             })
         }
     }
-    modificar(request,response){
+    async modificar(request,response){
         try{
+            let servicioHabitacion =new ServicioHabitacion()
             //1. Hay que recibir datos(si)
             let id=request.params.id
             let datos=request.body
+            await servicioHabitacion.modificar(id,datos)
             //2. modificar en BD
             //3. enviar respuesta
             response.status(400).json({
@@ -48,13 +54,15 @@ export class controladorHabitacion{
             })
         }
     }
-    registrar(request,response){
+    async registrar(request,response){
         try{
+            let servicioHabitacion =new ServicioHabitacion()
             //1. hay que recibir datos(si)
             let datos=request.body
             response.status(200).json({
                 "mensaje":"Exito buscando los datos",
-                "datos":"aca los datos"
+                "datos": datos.precio,
+                "diferencia":"diferencia en dias calculados"
             })
         }catch(error){
              response.status(400).json({
@@ -62,15 +70,17 @@ export class controladorHabitacion{
             })
         }
     }
-    eliminar(request,response){
+    async eliminar(request,response){
         try{
+            let servicioHabitacion =new ServicioHabitacion()
             //1. hay que recibir datos(si)
             let id = request.params.id
+            await servicioHabitacion.eliminar(id)
             //2. eliminelo de la BD
             //3.responda
             response.status(400).json({
                 "mensaje":"Exito borrando la habitacion",
-                "datos":"aca los datos"
+                "datos":"Habitacion ha sido eliminada"
             })
         }catch(error){
              response.status(400).json({

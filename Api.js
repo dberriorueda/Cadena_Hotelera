@@ -1,28 +1,33 @@
 //Esta clase representa un servidor
 import express from "express";
-import { rutasAPI } from "./router/rutasHoteleras.js";
+import {rutasAPI} from "./router/rutasHoteles.js"
+import { establecerConexionBD } from "./database/conexion.js";
 
-const puerto = 3001;
 
-export class Api{
-    constructor(){
-        this.app = express()
-        this.procesarPeticion()
-    }
+export class Api {
+  constructor() {
+    this.app = express()
+    this.conectarBD()
+    this.procesarPeticiones()
+  }
 
-    //1. Levantar peticion
-    levantarServidor() {
-        this.app.listen(puerto, function() {
-            console.log("servidor operando")
-            
-        })
-    }
+  //1. Levantar el servidor
+  levantarServidor() {
+    this.app.listen(3000, function () {
+      console.log("servidor operando");
+    });
+  }
 
-    //2. Atiende las peticiones y responde
-    procesarPeticion(){
-        this.app.use("/",rutasAPI)
-        this.app.use(express.json())
-    }
+  //2. Atiende las peticiones y responde
+  procesarPeticiones() {
+    this.app.use(express.json())
+    this.app.use("/",rutasAPI)
+    
+  }
 
-    // se conecta a la Base de datos
-}    
+  //3. Se conecta a la Base de Datos
+  conectarBD(){
+    establecerConexionBD()
+  }
+  
+}
