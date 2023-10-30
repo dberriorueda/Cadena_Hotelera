@@ -45,7 +45,7 @@ export class ControladorHabitacion{
             //3. enviar respuesta
             response.status(400).json({
                 "mensaje":"Exito modificando la habitacion",
-                "datos":"Aca los datos"
+                "datos":await servicioHabitacion.modificar(id,datos)
             })
 
         }catch(error){
@@ -61,7 +61,7 @@ export class ControladorHabitacion{
             let datos=request.body
             response.status(200).json({
                 "mensaje":"Exito buscando los datos",
-                "datos": datos.precio,
+                "datos": datos,
                 "diferencia":"diferencia en dias calculados"
             })
         }catch(error){
@@ -84,7 +84,8 @@ export class ControladorHabitacion{
             })
         }catch(error){
              response.status(400).json({
-                "mensaje":"Fallamos borrando la habitacion"+error
+                "mensaje":"Fallamos borrando la habitacion"+error,
+                "datos": "Error al eliminar la habitacion con ID" + id
             })
         }
     }

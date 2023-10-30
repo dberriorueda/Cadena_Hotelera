@@ -19,6 +19,15 @@ export class ServicioHabitacion{
         return await habitacionNueva.save()
     }
     async eliminar(id){
+        try {
+            const resultado = await modeloHabitacion.findByIdAndRemove(id)
+            if(!resultado){
+                throw new Error("No se encontro la habitacion con el id")
+            }
+            return {mensaje: "Habitacion eliminada", id: resultado._id}
+        }catch(error){
+            throw new Error("Error al eliminar la habitacion:" + error.message)
+        }
         
     }
 
