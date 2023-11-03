@@ -1,3 +1,4 @@
+import { modeloHabitacion } from "../models/modeloHabitacion.js"
 import { ServicioHabitacion } from "../services/ServicioHabitacion.js"
 export class ControladorHabitacion{
     constructor(){}
@@ -43,9 +44,9 @@ export class ControladorHabitacion{
             await servicioHabitacion.modificar(id,datos)
             //2. modificar en BD
             //3. enviar respuesta
-            response.status(400).json({
+            response.status(200).json({
                 "mensaje":"Exito modificando la habitacion",
-                "datos":await servicioHabitacion.modificar(id,datos)
+                "datos":"Habitacion modificada con exito"
             })
 
         }catch(error){
@@ -59,10 +60,17 @@ export class ControladorHabitacion{
             let servicioHabitacion =new ServicioHabitacion()
             //1. hay que recibir datos(si)
             let datos=request.body
+            let nuevaHabitacion = new modeloHabitacion({
+                nombre: datos.nombre,
+                foto: datos.foto,
+                descripcion:datos.descripcion,
+                precioNoche: datos.precioNoche
+            })
+
+            await nuevaHabitacion.save()
             response.status(200).json({
-                "mensaje":"Exito buscando los datos",
-                "datos": datos,
-                "diferencia":"diferencia en dias calculados"
+                "mensaje":"Exito registrando la habitacion",
+                "datos": nuevaHabitacion
             })
         }catch(error){
              response.status(400).json({
@@ -78,7 +86,7 @@ export class ControladorHabitacion{
             await servicioHabitacion.eliminar(id)
             //2. eliminelo de la BD
             //3.responda
-            response.status(400).json({
+            response.status(200).json({
                 "mensaje":"Exito borrando la habitacion",
                 "datos":"Habitacion ha sido eliminada"
             })
