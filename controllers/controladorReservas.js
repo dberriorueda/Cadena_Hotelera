@@ -1,4 +1,4 @@
-import { ServicioReserva } from "express"
+import { ServicioReserva } from "../services/ServicioReserva.js"
 
 export class ControladorReserva{
     constructor(){}
@@ -17,7 +17,7 @@ export class ControladorReserva{
             })
         }
     }
-    async buscarPorId(request,request){
+    async buscarPorId(request,response){
         try{
             let servicioReserva = new ServicioReserva()
             let id = request.params.id

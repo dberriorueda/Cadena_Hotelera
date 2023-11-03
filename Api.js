@@ -1,6 +1,6 @@
 //Esta clase representa un servidor
 import express from "express";
-import {rutasAPI} from "./router/rutasHoteles.js"
+import {rutasAPI} from "./router/rutasReserva.js"
 import { establecerConexionBD } from "./database/conexion.js";
 
 

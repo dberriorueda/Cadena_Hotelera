@@ -1,9 +1,9 @@
-import { Express } from "express";
+import express from "express";
 
 import { ControladorReserva } from "../controllers/controladorReservas.js";
 let controlador = new ControladorReserva()
 
-export let rutasAPI = express.router()
+export let rutasAPI = express.Router()
 
 rutasAPI.post("/api/reservas", controlador.registrar)
 rutasAPI.get("/api/reservas", controlador.buscaTodas)
