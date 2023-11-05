@@ -1,3 +1,4 @@
+import { modeloReserva } from "../models/modeloReserva.js"
 import { ServicioReserva } from "../services/ServicioReserva.js"
 
 export class ControladorReserva{
@@ -52,14 +53,24 @@ export class ControladorReserva{
         try{
             let servicioReserva = new ServicioReserva()
             let datos = request.body
-            response.status(200).json({
-                "mensaje":"Exito buscando los datos",
-                "datos":datos,
-                "diferencia":"Diferencia en dias calculado"
+
+            //Crear el modelo de reserva
+            let nuevaReserva = new modeloReserva({
+                nombreCliente: datos.nombreCliente,
+                apellidoCliente: datos.apellidoCliente,
+                telefono: datos.telefono,
+                fechaInicio: datos.fechaInicio,
+                fechaFinal: datos.fechaFinal,
+                numeroPersonas: datos.numeroPersonas,
+            })
+            let reservaGuardada = await nuevaReserva.save()
+            response.status(201).json({
+                "mensaje":"Reserva registrada con exito",
+                "datos": reservaGuardada,
             })
         }catch(error){
             response.status(400).json({
-                "mensaje":"Fallamos"+error
+                "mensaje":"Reserva no guardada"+error
             })
         }
     }
