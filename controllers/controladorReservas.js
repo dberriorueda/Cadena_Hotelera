@@ -38,14 +38,19 @@ export class ControladorReserva{
             let servicioReserva = new ServicioReserva()
             let id = request.params.id
             let datos = request.body
+
+            let reservaExistente = await modeloReserva.findById(id)
+            if(!reservaExistente) {
+                return response.status(404).json({ mensaje: "La reserva no existe"})
+            }
             await servicioReserva.modificar(id,datos)
             response.status(200).json({
-                "mensaje":"Exito buscando los datos",
+                "mensaje":"Exito modificando los datos",
                 "datos":"aca los datos"
             })
         }catch(error){
             response.status(400).json({
-                "mensaje":"Fallams"+error
+                "mensaje":"Fallo la modificacion"
             })
         }
     }
