@@ -10,7 +10,7 @@ export class ControladorReserva{
             response.status(200).json({
                 "estado":true,
                 "mensaje":"Exito buscando los datos",
-                "datos": await servicioReserva.buscaTodas()
+                "datos": await servicioReserva.buscarTodas()
             })
         }catch(error){
             response.status(400).json({
@@ -83,6 +83,7 @@ export class ControladorReserva{
         try{
             let servicioReserva = new ServicioReserva()
             let id = request.params.id
+            servicioReserva.eliminar(id)
             response.status(200).json({
                 "mensaje":"Exito buscando los datos",
                 "datos":"aca los datos"
