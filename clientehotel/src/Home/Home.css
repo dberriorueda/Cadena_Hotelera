@@ -1,6 +1,6 @@
 .banner{
-    background-image: url('../assets/foto1.jpg');
-    padding: 25;
+    background-image: url('../assets/banner.jpg');
+    padding: 25%;
     position: relative;
     z-index: 1;
 }
